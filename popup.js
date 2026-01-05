@@ -1,7 +1,7 @@
 // Silent Web - Popup Script
 
-// Load blocked count
 document.addEventListener('DOMContentLoaded', function() {
+    // Load blocked count
     try {
         chrome.runtime.sendMessage({action: 'getBlockedCount'}, (response) => {
             if (response && response.count !== undefined) {
