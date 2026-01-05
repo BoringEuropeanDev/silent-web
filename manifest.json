@@ -3,23 +3,25 @@
   "name": "Silent Web",
   "version": "1.0.0",
   "description": "Peaceful browsing. Block all ads or just 18+ content. Experience the silence.",
+  
   "permissions": [
     "declarativeNetRequest",
     "declarativeNetRequestFeedback",
-    "tabs",
     "storage",
-    "webRequest"
+    "tabs"
   ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
+  
+  "host_permissions": ["<all_urls>"],
+  
   "action": {
     "default_popup": "popup.html",
     "default_title": "Silent Web - Peaceful Browsing"
   },
+  
   "background": {
     "service_worker": "background.js"
   },
+  
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -28,6 +30,20 @@
       "all_frames": true
     }
   ],
+  
+  "rule_resources": [
+    {
+      "id": "ads_rules",
+      "enabled": false,
+      "path": "rules_ads.json"
+    },
+    {
+      "id": "adult_rules",
+      "enabled": false,
+      "path": "rules_adult.json"
+    }
+  ],
+  
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
