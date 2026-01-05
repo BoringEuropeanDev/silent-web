@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Silent Web",
+  "version": "1.0.0",
+  "description": "Peaceful browsing. Block all ads or just 18+ content. Experience the silence.",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "tabs",
+    "storage",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Silent Web - Peaceful Browsing",
+    "default_icon": {
+      "16": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect fill='%23f59e0b' width='16' height='16'/><text x='8' y='12' font-size='10' font-weight='bold' fill='white' text-anchor='middle'>SW</text></svg>",
+      "48": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect fill='%23f59e0b' width='48' height='48'/><text x='24' y='32' font-size='28' font-weight='bold' fill='white' text-anchor='middle'>SW</text></svg>",
+      "128": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect fill='%23f59e0b' width='128' height='128'/><text x='64' y='85' font-size='72' font-weight='bold' fill='white' text-anchor='middle'>SW</text></svg>"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect fill='%23f59e0b' width='16' height='16'/><text x='8' y='12' font-size='10' font-weight='bold' fill='white' text-anchor='middle'>SW</text></svg>",
+    "48": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect fill='%23f59e0b' width='48' height='48'/><text x='24' y='32' font-size='28' font-weight='bold' fill='white' text-anchor='middle'>SW</text></svg>",
+    "128": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect fill='%23f59e0b' width='128' height='128'/><text x='64' y='85' font-size='72' font-weight='bold' fill='white' text-anchor='middle'>SW</text></svg>"
+  }
+}
