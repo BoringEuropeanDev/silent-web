@@ -2,9 +2,8 @@
 console.log('Silent Web - Extension initialized');
 
 let blockedCount = 0;
-let blockMode = 'none'; // 'none', 'ads', '18plus', or 'both'
+let blockMode = 'none';
 
-// Listen for messages
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'adBlocked') {
     blockedCount++;
@@ -34,7 +33,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// Load saved settings on startup
 chrome.storage.local.get(['blockMode'], (result) => {
   if (result.blockMode) {
     blockMode = result.blockMode;
