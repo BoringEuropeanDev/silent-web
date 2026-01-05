@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1001,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*pornhub.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1002,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*xvideos.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1003,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*xnxx.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1004,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*redtube.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1005,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*spankbang.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1006,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*eporner.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1007,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*youporn.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1008,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*cam4.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1009,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*chaturbate.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1010,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*onlyfans.com*",
+      "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
+    }
+  },
+  {
+    "id": 1011,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*sexism*",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 1012,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "regexFilter": ".*\\.xxx$",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 1013,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*adult-*",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 1014,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*dating*",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  }
+]
