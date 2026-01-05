@@ -1,6 +1,4 @@
 // Silent Web - Content Script
-// Handles ad removal and page cleanup
-
 function getBlockMode() {
   return new Promise((resolve) => {
     chrome.runtime.sendMessage({ action: 'getBlockMode' }, (response) => {
@@ -9,7 +7,6 @@ function getBlockMode() {
   });
 }
 
-// Ad selectors to hide (for display:none blocking)
 const adSelectors = [
   '[class*="ad"]',
   '[id*="ad"]',
@@ -36,9 +33,7 @@ const adSelectors = [
 
 async function removeAds() {
   const mode = await getBlockMode();
-  
   if (mode === 'ads' || mode === 'both') {
-    // Hide ad elements
     adSelectors.forEach(selector => {
       try {
         document.querySelectorAll(selector).forEach(el => {
@@ -52,14 +47,10 @@ async function removeAds() {
   }
 }
 
-// Run on page load
 document.addEventListener('DOMContentLoaded', removeAds);
 window.addEventListener('load', removeAds);
-
-// Also run immediately for dynamic pages
 removeAds();
 
-// Handle dynamically added ads (MutationObserver)
 const observer = new MutationObserver(async () => {
   const mode = await getBlockMode();
   if (mode === 'ads' || mode === 'both') {
