@@ -1,104 +1,65 @@
-// Silent Web - Popup Script
+// Silent Web - Background Service Worker
+console.log('Silent Web - Extension initialized');
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Load blocked count
-  chrome.runtime.sendMessage({ action: 'getBlockedCount' }, (response) => {
-    if (response && response.count !== undefined) {
-      document.getElementById('blockedCount').textContent = response.count;
-    }
-  });
+let blockedCount = 0;
+let blockMode = 'none'; // 'none', 'ads', '18plus', or 'both'
 
-  // Load current block mode
-  chrome.runtime.sendMessage({ action: 'getBlockMode' }, (response) => {
-    if (response && response.mode) {
-      updateButtonStates(response.mode);
-    }
-  });
-
-  // Button listeners
-  document.getElementById('blockAdsBtn').addEventListener('click', blockAllAds);
-  document.getElementById('block18PlusBtn').addEventListener('click', block18Plus);
-  document.getElementById('supportBtn').addEventListener('click', openSupport);
-  document.getElementById('resetBtn').addEventListener('click', resetCount);
+// Listen for messages
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'adBlocked') {
+    blockedCount++;
+    chrome.action.setBadgeText({ text: blockedCount.toString() });
+    chrome.action.setBadgeBackgroundColor({ color: '#ef4444' });
+  }
+  
+  if (request.action === 'getBlockedCount') {
+    sendResponse({ count: blockedCount });
+  }
+  
+  if (request.action === 'getBlockMode') {
+    sendResponse({ mode: blockMode });
+  }
+  
+  if (request.action === 'setBlockMode') {
+    blockMode = request.mode;
+    chrome.storage.local.set({ blockMode: blockMode });
+    applyBlockingRules();
+    sendResponse({ success: true });
+  }
+  
+  if (request.action === 'resetCount') {
+    blockedCount = 0;
+    chrome.action.setBadgeText({ text: '0' });
+    sendResponse({ success: true });
+  }
 });
 
-function blockAllAds() {
-  chrome.runtime.sendMessage({ 
-    action: 'setBlockMode', 
-    mode: 'ads' 
-  }, (response) => {
-    if (response.success) {
-      updateButtonStates('ads');
-      showNotification('✓ Ad blocking ENABLED!');
-    }
-  });
-}
+// Load saved settings on startup
+chrome.storage.local.get(['blockMode'], (result) => {
+  if (result.blockMode) {
+    blockMode = result.blockMode;
+    applyBlockingRules();
+  }
+});
 
-function block18Plus() {
-  chrome.runtime.sendMessage({ 
-    action: 'setBlockMode', 
-    mode: '18plus' 
-  }, (response) => {
-    if (response.success) {
-      updateButtonStates('18plus');
-      showNotification('✓ 18+ blocking ENABLED!');
-    }
-  });
-}
-
-function resetCount() {
-  chrome.runtime.sendMessage({ action: 'resetCount' }, (response) => {
-    if (response.success) {
-      document.getElementById('blockedCount').textContent = '0';
-      showNotification('✓ Count reset!');
-    }
-  });
-}
-
-function openSupport() {
-  chrome.tabs.create({
-    url: 'https://ko-fi.com/boringeuropeandev'
-  });
-}
-
-function updateButtonStates(mode) {
-  const adsBtn = document.getElementById('blockAdsBtn');
-  const plusBtn = document.getElementById('block18PlusBtn');
-  
-  if (mode === 'ads') {
-    adsBtn.style.opacity = '1';
-    adsBtn.style.transform = 'scale(1)';
-    plusBtn.style.opacity = '0.6';
-    plusBtn.style.transform = 'scale(0.95)';
-  } else if (mode === '18plus') {
-    plusBtn.style.opacity = '1';
-    plusBtn.style.transform = 'scale(1)';
-    adsBtn.style.opacity = '0.6';
-    adsBtn.style.transform = 'scale(0.95)';
-  } else {
-    adsBtn.style.opacity = '0.6';
-    adsBtn.style.transform = 'scale(0.95)';
-    plusBtn.style.opacity = '0.6';
-    plusBtn.style.transform = 'scale(0.95)';
+function applyBlockingRules() {
+  if (blockMode === 'none') {
+    chrome.declarativeNetRequest.updateEnabledRulesets({ disableRulesetIds: ['ads_rules', 'adult_rules'] });
+  } else if (blockMode === 'ads') {
+    chrome.declarativeNetRequest.updateEnabledRulesets({ 
+      enableRulesetIds: ['ads_rules'],
+      disableRulesetIds: ['adult_rules']
+    });
+  } else if (blockMode === '18plus') {
+    chrome.declarativeNetRequest.updateEnabledRulesets({ 
+      enableRulesetIds: ['adult_rules'],
+      disableRulesetIds: ['ads_rules']
+    });
+  } else if (blockMode === 'both') {
+    chrome.declarativeNetRequest.updateEnabledRulesets({ 
+      enableRulesetIds: ['ads_rules', 'adult_rules']
+    });
   }
 }
 
-function showNotification(message) {
-  const notification = document.createElement('div');
-  notification.textContent = message;
-  notification.style.cssText = `
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #22c55e;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 12px;
-    z-index: 9999;
-    animation: slideDown 0.3s ease;
-  `;
-  document.body.appendChild(notification);
-  setTimeout(() => notification.remove(), 2000);
-}
+console.log('Silent Web - Background worker ready');
