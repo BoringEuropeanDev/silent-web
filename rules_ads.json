@@ -13,8 +13,8 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*google-analytics.com*",
-      "resourceTypes": ["script", "xmlhttprequest"]
+      "urlFilter": "*pagead2.googlesyndication.com*",
+      "resourceTypes": ["script", "image", "xmlhttprequest"]
     }
   },
   {
@@ -31,8 +31,8 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*facebook.com/tr*",
-      "resourceTypes": ["image", "script", "xmlhttprequest"]
+      "urlFilter": "*googleadservices.com*",
+      "resourceTypes": ["script", "image"]
     }
   },
   {
@@ -40,39 +40,12 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*googleadservices.com*",
-      "resourceTypes": ["script", "image", "xmlhttprequest"]
+      "urlFilter": "*google-analytics.com*",
+      "resourceTypes": ["script"]
     }
   },
   {
     "id": 6,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "urlFilter": "*pagead2.googlesyndication.com*",
-      "resourceTypes": ["script", "image"]
-    }
-  },
-  {
-    "id": 7,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "urlFilter": "*ads.criteo.com*",
-      "resourceTypes": ["script", "image", "xmlhttprequest"]
-    }
-  },
-  {
-    "id": 8,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "urlFilter": "*connect.facebook.net*",
-      "resourceTypes": ["script", "image", "xmlhttprequest"]
-    }
-  },
-  {
-    "id": 9,
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
@@ -81,12 +54,39 @@
     }
   },
   {
+    "id": 7,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*facebook.com/tr*",
+      "resourceTypes": ["script", "image"]
+    }
+  },
+  {
+    "id": 8,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*connect.facebook.net*",
+      "resourceTypes": ["script"]
+    }
+  },
+  {
+    "id": 9,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "*analytics.google.com*",
+      "resourceTypes": ["script"]
+    }
+  },
+  {
     "id": 10,
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*pixel.advertising.com*",
-      "resourceTypes": ["script", "image"]
+      "urlFilter": "*cdn.cookielaw.org*",
+      "resourceTypes": ["script"]
     }
   },
   {
@@ -94,7 +94,7 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*ib.adnxs.com*",
+      "regexFilter": ".*\\.google\\.com/ads.*",
       "resourceTypes": ["script", "image"]
     }
   },
@@ -103,7 +103,7 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*scorecardresearch.com*",
+      "urlFilter": "*googlesyndication.com*",
       "resourceTypes": ["script", "image"]
     }
   },
@@ -112,8 +112,8 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*segment.com*",
-      "resourceTypes": ["script"]
+      "urlFilter": "*advertising.com*",
+      "resourceTypes": ["script", "image"]
     }
   },
   {
@@ -121,7 +121,7 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*addthis.com*",
+      "urlFilter": "*adservice.google.com*",
       "resourceTypes": ["script"]
     }
   },
@@ -130,7 +130,7 @@
     "priority": 1,
     "action": { "type": "block" },
     "condition": {
-      "urlFilter": "*pinterest.com*",
+      "urlFilter": "*quantserve.com*",
       "resourceTypes": ["script", "image"]
     }
   }
