@@ -2,333 +2,170 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Silent Web - Peaceful Browsing Extension">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silent Web</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        html {
-            font-size: 16px;
-            -webkit-text-size-adjust: 100%;
+        html, body {
+            width: 320px;
+            height: 480px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #333;
         }
 
         body {
-            width: 100%;
-            max-width: 360px;
-            min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            background: #ffffff;
-            padding: 16px;
-            color: #333333;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        @media (max-width: 480px) {
-            body {
-                width: 100vw;
-                padding: 12px;
-            }
-        }
-
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 24px;
-            padding: 0;
+            margin-bottom: 20px;
         }
 
-        .header h1 {
-            font-size: clamp(20px, 5vw, 28px);
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-            letter-spacing: -0.5px;
+        .logo {
+            font-size: 40px;
+            margin-bottom: 10px;
         }
 
-        .header p {
-            font-size: clamp(11px, 3vw, 13px);
-            color: #666666;
-            font-weight: 400;
-            margin: 0;
-            line-height: 1.4;
+        h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
         }
 
         .stats {
-            background: #f9f9f9;
-            border-radius: 12px;
-            padding: 16px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
             margin-bottom: 20px;
             text-align: center;
-            border: 1px solid #e8e8e8;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(10px);
         }
 
-        .stats-value {
-            font-size: clamp(24px, 8vw, 32px);
-            font-weight: 800;
-            display: block;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-            font-variant-numeric: tabular-nums;
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
         }
 
-        .stats-label {
-            font-size: clamp(10px, 2.5vw, 12px);
-            color: #777777;
-            margin: 0;
-            font-weight: 500;
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .buttons-container {
+        .buttons {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-bottom: 16px;
+            flex: 1;
         }
 
         button {
-            padding: 14px 16px;
+            padding: 12px 16px;
             border: none;
-            border-radius: 10px;
-            font-size: clamp(12px, 3vw, 14px);
-            font-weight: 700;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
             color: white;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 48px;
-            width: 100%;
+            text-align: center;
         }
 
-        button:active {
+        .btn-primary {
+            background: #d32f2f;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: #b71c1c;
+            transform: scale(1.02);
+        }
+
+        .btn-primary:active {
             transform: scale(0.98);
         }
 
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .btn-secondary {
+            background: #c62828;
+            flex: 1;
         }
 
-        button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
+        .btn-secondary:hover {
+            background: #ad1457;
+            transform: scale(1.02);
         }
 
-        button:active::before {
-            width: 250px;
-            height: 250px;
+        .btn-secondary:active {
+            transform: scale(0.98);
         }
 
-        .btn-block-all {
-            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15);
+        .btn-support {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex: 0.8;
         }
 
-        .btn-block-all:hover {
-            background: linear-gradient(135deg, #c62828 0%, #ad1457 100%);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
-            transform: translateY(-2px);
+        .btn-support:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        .btn-block-all:focus-visible {
-            outline: 2px solid #d32f2f;
-            outline-offset: 2px;
-        }
-
-        .btn-block-nsfw {
-            background: linear-gradient(135deg, #c62828 0%, #ad1457 100%);
-            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.15);
-        }
-
-        .btn-block-nsfw:hover {
-            background: linear-gradient(135deg, #b71c1c 0%, #880e4f 100%);
-            box-shadow: 0 6px 16px rgba(198, 40, 40, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn-block-nsfw:focus-visible {
-            outline: 2px solid #c62828;
-            outline-offset: 2px;
-        }
-
-        .btn-donate {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
-            margin-top: 4px;
-        }
-
-        .btn-donate:hover {
-            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn-donate:focus-visible {
-            outline: 2px solid #f59e0b;
-            outline-offset: 2px;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
-            margin: 8px 0;
-        }
-
-        .status-text {
-            font-size: clamp(11px, 2.5vw, 13px);
-            margin-top: 16px;
-            padding: 12px;
-            background: #f9f9f9;
-            border-radius: 10px;
+        .footer {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
             text-align: center;
-            border: 1px solid #e8e8e8;
-            color: #333333;
-            font-weight: 500;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .status-active {
-            color: #2e7d32;
-            font-weight: 700;
-        }
-
-        .status-inactive {
-            color: #f57c00;
-            font-weight: 700;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 360px) {
-            body {
-                padding: 12px;
-            }
-
-            button {
-                padding: 12px 14px;
-                min-height: 44px;
-                font-size: 12px;
-            }
-
-            .header {
-                margin-bottom: 20px;
-            }
-
-            .header h1 {
-                font-size: 22px;
-            }
-        }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #1a1a1a;
-                color: #e0e0e0;
-            }
-
-            .header h1 {
-                color: #ffffff;
-            }
-
-            .header p {
-                color: #b0b0b0;
-            }
-
-            .stats {
-                background: #2a2a2a;
-                border-color: #3a3a3a;
-            }
-
-            .stats-value {
-                color: #ffffff;
-            }
-
-            .stats-label {
-                color: #a0a0a0;
-            }
-
-            .status-text {
-                background: #2a2a2a;
-                border-color: #3a3a3a;
-                color: #e0e0e0;
-            }
-        }
-
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: more) {
-            button {
-                border: 2px solid currentColor;
-            }
+        .version {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔇 Silent Web</h1>
-            <p>Peaceful browsing. No distractions.</p>
-        </div>
+    <div class="header">
+        <div class="logo">🔇</div>
+        <h1>Silent Web</h1>
+        <p class="subtitle">Peaceful Browsing</p>
+    </div>
 
-        <div class="stats">
-            <span class="stats-value" id="blockedCount" role="status" aria-live="polite">0</span>
-            <p class="stats-label">Ads blocked this session</p>
-        </div>
+    <div class="stats">
+        <div class="stat-number" id="blockedCount">0</div>
+        <div class="stat-label">Ads Blocked Today</div>
+    </div>
 
-        <div class="buttons-container" role="group" aria-label="Ad blocking options">
-            <button class="btn-block-all" id="blockAllBtn" aria-label="Block all ads on all websites">
-                🛑 Block All Ads
-            </button>
-            <button class="btn-block-nsfw" id="blockNsfwBtn" aria-label="Block adult content and gambling sites">
-                🔞 Block 18+ Sites
-            </button>
-            <div class="divider" aria-hidden="true"></div>
-            <button class="btn-donate" id="donateBtn" aria-label="Support Silent Web on Ko-fi">
-                ❤️ Support Us - Donate
-            </button>
-        </div>
+    <div class="buttons">
+        <button class="btn-primary" onclick="blockAllAds()">BLOCK ALL ADS</button>
+        <button class="btn-secondary" onclick="block18Plus()">BLOCK 18+ SITES</button>
+        <button class="btn-support" onclick="openSupport()">💚 SUPPORT</button>
+    </div>
 
-        <div class="status-text" role="status" aria-live="polite">
-            Status: <span id="status" class="status-active">Active</span>
-        </div>
+    <div class="footer">
+        <p>✓ Free forever • No tracking • Privacy first</p>
+        <div class="version">v1.0.0</div>
     </div>
 
     <script src="popup.js"></script>
 </body>
+</html>
