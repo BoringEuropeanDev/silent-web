@@ -6,7 +6,6 @@
   
   "permissions": [
     "declarativeNetRequest",
-    "declarativeNetRequestFeedback",
     "storage",
     "tabs"
   ],
@@ -31,18 +30,20 @@
     }
   ],
   
-  "rule_resources": [
-    {
-      "id": "ads_rules",
-      "enabled": false,
-      "path": "rules_ads.json"
-    },
-    {
-      "id": "adult_rules",
-      "enabled": false,
-      "path": "rules_adult.json"
-    }
-  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ads_rules",
+        "enabled": true,
+        "path": "rules_ads.json"
+      },
+      {
+        "id": "adult_rules",
+        "enabled": false,
+        "path": "rules_adult.json"
+      }
+    ]
+  },
   
   "icons": {
     "16": "icons/icon16.png",
