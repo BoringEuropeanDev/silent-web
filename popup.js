@@ -1,31 +1,39 @@
-// Get blocked count from background
+// Silent Web - Popup Script
+
+// Load blocked count on popup open
 document.addEventListener('DOMContentLoaded', function() {
-    chrome.runtime.sendMessage({action: 'getBlockedCount'}, (response) => {
-        if (response && response.count) {
-            document.getElementById('blockedCount').textContent = response.count;
-        }
-    });
+    try {
+        chrome.runtime.sendMessage({action: 'getBlockedCount'}, (response) => {
+            if (response && response.count !== undefined) {
+                document.getElementById('blockedCount').textContent = response.count;
+            }
+        });
+    } catch (e) {
+        console.log('Error getting blocked count:', e);
+    }
 });
 
-// Block All Ads Button
-function blockAllAds() {
-    console.log('BLOCK ALL ADS clicked');
-    alert('Ad blocking enabled for this session!');
-    window.close();
-}
+// Block All Ads
+window.blockAllAds = function() {
+    console.log('Block All Ads clicked');
+    alert('✓ Ad blocking enabled for this session!');
+    setTimeout(() => window.close(), 500);
+};
 
-// Block 18+ Sites Button
-function block18Plus() {
-    console.log('BLOCK 18+ SITES clicked');
-    alert('18+ content blocking enabled!');
-    window.close();
-}
+// Block 18+ Sites
+window.block18Plus = function() {
+    console.log('Block 18+ Sites clicked');
+    alert('✓ 18+ content blocking enabled!');
+    setTimeout(() => window.close(), 500);
+};
 
-// Support Button
-function openSupport() {
-    console.log('SUPPORT clicked');
+// Support / Donate
+window.openSupport = function() {
+    console.log('Support button clicked');
     chrome.tabs.create({
         url: 'https://ko-fi.com/boringeuropeandev'
     });
-    window.close();
-}
+    setTimeout(() => window.close(), 500);
+};
+
+console.log('popup.js loaded successfully');
