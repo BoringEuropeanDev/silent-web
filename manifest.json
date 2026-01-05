@@ -15,12 +15,7 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Silent Web - Peaceful Browsing",
-    "default_icon": {
-      "16": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><circle cx='64' cy='64' r='64' fill='%23f59e0b'/><path d='M40 50 L60 30 L80 50 L70 60 Q80 70 70 85 L50 70 L40 80 Z' fill='white' opacity='0.7'/><line x1='35' y1='95' x2='95' y2='35' stroke='white' stroke-width='6' opacity='0.7'/></svg>",
-      "48": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><circle cx='64' cy='64' r='64' fill='%23f59e0b'/><path d='M40 50 L60 30 L80 50 L70 60 Q80 70 70 85 L50 70 L40 80 Z' fill='white' opacity='0.7'/><line x1='35' y1='95' x2='95' y2='35' stroke='white' stroke-width='6' opacity='0.7'/></svg>",
-      "128": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><circle cx='64' cy='64' r='64' fill='%23f59e0b'/><path d='M40 50 L60 30 L80 50 L70 60 Q80 70 70 85 L50 70 L40 80 Z' fill='white' opacity='0.7'/><line x1='35' y1='95' x2='95' y2='35' stroke='white' stroke-width='6' opacity='0.7'/></svg>"
-    }
+    "default_title": "Silent Web - Peaceful Browsing"
   },
   "background": {
     "service_worker": "background.js"
