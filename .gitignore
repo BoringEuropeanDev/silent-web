@@ -1,0 +1,30 @@
+# Operating System
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if you ever add npm packages)
+node_modules/
+package-lock.json
+
+# Build files
+dist/
+build/
+*.zip
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+.temp/
+.cache/
+temp/
