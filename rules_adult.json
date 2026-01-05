@@ -88,41 +88,5 @@
       "urlFilter": "*onlyfans.com*",
       "resourceTypes": ["main_frame", "sub_frame", "script", "image"]
     }
-  },
-  {
-    "id": 1011,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "urlFilter": "*sexism*",
-      "resourceTypes": ["main_frame", "sub_frame"]
-    }
-  },
-  {
-    "id": 1012,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "regexFilter": ".*\\.xxx$",
-      "resourceTypes": ["main_frame", "sub_frame"]
-    }
-  },
-  {
-    "id": 1013,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "urlFilter": "*adult-*",
-      "resourceTypes": ["main_frame", "sub_frame"]
-    }
-  },
-  {
-    "id": 1014,
-    "priority": 1,
-    "action": { "type": "block" },
-    "condition": {
-      "urlFilter": "*dating*",
-      "resourceTypes": ["main_frame", "sub_frame"]
-    }
   }
 ]
