@@ -1,6 +1,3 @@
-// Silent Web - Background Service Worker
-console.log('Silent Web - Extension initialized');
-
 let blockedCount = 0;
 let blockMode = 'none';
 
@@ -41,8 +38,12 @@ chrome.storage.local.get(['blockMode'], (result) => {
 });
 
 function applyBlockingRules() {
+  console.log('Applying blocking rules, mode:', blockMode);
+  
   if (blockMode === 'none') {
-    chrome.declarativeNetRequest.updateEnabledRulesets({ disableRulesetIds: ['ads_rules', 'adult_rules'] });
+    chrome.declarativeNetRequest.updateEnabledRulesets({ 
+      disableRulesetIds: ['ads_rules', 'adult_rules'] 
+    });
   } else if (blockMode === 'ads') {
     chrome.declarativeNetRequest.updateEnabledRulesets({ 
       enableRulesetIds: ['ads_rules'],
@@ -60,4 +61,4 @@ function applyBlockingRules() {
   }
 }
 
-console.log('Silent Web - Background worker ready');
+console.log('Background worker ready');
