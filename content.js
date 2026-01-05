@@ -1,3 +1,4 @@
+// Silent Web - Content Script FIXED
 function getBlockMode() {
   return new Promise((resolve) => {
     chrome.runtime.sendMessage({ action: 'getBlockMode' }, (response) => {
@@ -34,17 +35,23 @@ async function removeAds() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', removeAds);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', removeAds);
+}
+
 window.addEventListener('load', removeAds);
 removeAds();
 
-const observer = new MutationObserver(async () => {
-  const mode = await getBlockMode();
-  if (mode === 'ads' || mode === 'both') {
-    removeAds();
-  }
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
+// FIX: Check if document.body exists before observing
+if (document.body) {
+  const observer = new MutationObserver(async () => {
+    const mode = await getBlockMode();
+    if (mode === 'ads' || mode === 'both') {
+      removeAds();
+    }
+  });
+  
+  observer.observe(document.body, { childList: true, subtree: true });
+}
 
 console.log('Content script loaded');
